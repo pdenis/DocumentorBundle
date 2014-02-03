@@ -1,0 +1,3 @@
+snide_documentor_hook:
+    pattern:   /hook
+    defaults:  { _controller: SnideDocumentorBundle:Hook:index }

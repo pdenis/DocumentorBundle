@@ -17,11 +17,11 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * Class SnideTravinizerExtension
+ * Class SnideDocumentorExtension
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-class SnideTravinizerExtension extends Extension
+class SnideDocumentorExtension extends Extension
 {
     /**
      * Load configuration of Bundle

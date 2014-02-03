@@ -2,23 +2,28 @@
 
 namespace Snide\Bundle\DocumentorBundle\Controller;
 
+use Snide\Bundle\CalendarBundle\Manager\EventManagerInterface;
+use Snide\Bundle\DocumentorBundle\Generator\DocGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * Class HookController
+ *
+ * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ */
 class HookController extends Controller
 {
     /**
-     * Hook action
+     * @Template
      *
      * @return array
-     *
-     * @Template
      */
     public function indexAction()
     {
+        $generator = new DocGenerator('/var/www/documentor');
+        $generator->generate('/var/www/itkg_lib/itkg/src');
         return array();
     }
 }
-
