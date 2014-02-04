@@ -16,6 +16,7 @@
     },
     "require": {
         "php": ">=5.3.3",
+        "knplabs/knp-gaufrette-bundle": "v0.1.4",
         "sami/sami": "v1.3"
     },
     "autoload": {
