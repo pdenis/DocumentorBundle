@@ -22,8 +22,8 @@ class HookController extends Controller
      */
     public function indexAction()
     {
-        $generator = new DocGenerator('/var/www/documentor');
-        $generator->generate('/var/www/itkg_lib/itkg/src');
+        $this->get('snide_documentor.repository_manager')->generateDoc('pdenis/memetor');
+
         return array();
     }
 }

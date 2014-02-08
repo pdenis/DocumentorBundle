@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="snide_documentor.repository_manager.class">Snide\Bundle\DocumentorBundle\Manager\RepositoryManager</parameter>
+        <parameter key="snide_documentor.manager.filesystem.class">Symfony\Component\Filesystem\Filesystem</parameter>
+    </parameters>
+
+    <services>
+        <service id="snide_documentor.manager.filesystem" class="%snide_documentor.manager.filesystem.class%" public="true"/>
+        <service id="snide_documentor.repository_manager" class="%snide_documentor.repository_manager.class%" public="true">
+            <argument type="service" id="snide_documentor.repository_handler" />
+            <argument type="service" id="snide_documentor.doc_generator" />
+            <argument type="service" id="snide_documentor.manager.filesystem" />
+            <argument>%snide_documentor.build_dir%</argument>
+        </service>
+    </services>
+</container>

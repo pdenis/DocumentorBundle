@@ -7,45 +7,46 @@ use Sami\Project;
 use Symfony\Component\Finder\Finder;
 use Snide\Bundle\DocumentorBundle\Model\Repo;
 
-class DocGenerator
+class DocGenerator implements DocGeneratorInterface
 {
-    protected $buildDir;
-    protected $path;
+    protected $destDir;
     protected $config = array();
 
-    public function __construct($buildDir, array $config = array())
+    public function __construct($destDir)
     {
-        $this->buildDir = $buildDir;
-        $this->config = $config;
+        $this->destDir = $destDir;
     }
 
     public function generate($path)
     {
+        // @TODO : Manager config file apizer.yml
         $this->path = $path;
-        $sami = $this->createConfig();
+        $sami = $this->createConfig($path);
         $project = $sami['project'];
         $project->parse();
         $project->render();
     }
 
-    public function createIterator()
+    protected function createIterator($path)
     {
+        // @TODO : Manage config file apizer.yml
         $iterator = Finder::create()
             ->files()
             ->name('*.php')
-            ->in($this->path);
+            ->in($path);
 
         return $iterator;
     }
 
-    public function createConfig()
+    protected function createConfig($path)
     {
-        return new Sami($this->createIterator(),
+        // @TODO : Manage config file apizer.yml
+        return new Sami($this->createIterator($path),
             array(
                 //   'versions'             => $versions,
                 'title'                => 'Symfony2 API',
-                'build_dir'            => $this->buildDir,
-                'cache_dir'            => $this->buildDir,
+                'build_dir'            => $this->destDir,
+                'cache_dir'            => $this->destDir,
                 'default_opened_level' => 2,
             ),
             $this->config
